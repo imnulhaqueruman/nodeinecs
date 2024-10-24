@@ -9,7 +9,7 @@ env:
   DOCKER_HUB_REPO: poridhi/nodeecs
   ECS_SERVICE: poridhi-new-svc
   ECS_CLUSTER: node-cluster
-  CONTAINER_NAME: nodejs  # Changed from 'node' to 'nodejs' to match task definition
+  CONTAINER_NAME: nodejs
 
 permissions:
   contents: read
@@ -23,6 +23,20 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v4
+    
+    - name: List files in workspace
+      run: ls -la
+      
+    - name: Verify task definition file
+      run: |
+        if [ -f "update-task-revision1.json" ]; then
+          echo "Task definition file exists"
+          cat update-task-revision1.json
+        else
+          echo "Task definition file does not exist"
+          pwd
+          ls -la
+        fi
     
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@v1
@@ -52,7 +66,7 @@ jobs:
       uses: aws-actions/amazon-ecs-render-task-definition@v1
       with:
         task-definition: update-task-revision1.json
-        container-name: ${{ env.CONTAINER_NAME }}  # This will now use 'nodejs'
+        container-name: ${{ env.CONTAINER_NAME }}
         image: ${{ env.DOCKER_HUB_REPO }}:v1.6
     
     - name: Deploy Amazon ECS task definition
