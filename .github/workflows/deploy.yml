@@ -65,7 +65,7 @@ jobs:
       id: task-def
       uses: aws-actions/amazon-ecs-render-task-definition@v1
       with:
-        task-definition: update-task-revision1.json
+        task-definition: update-task.json
         container-name: ${{ env.CONTAINER_NAME }}
         image: ${{ env.DOCKER_HUB_REPO }}:v1.6
     
