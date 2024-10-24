@@ -42,7 +42,7 @@ jobs:
         with:
           context: .
           push: true
-          tags: ${{ secrets.DOCKER_USERNAME }}/nodeecs:v1.6
+          tags: ${{ secrets.DOCKER_USERNAME }}/nodeecs:v1.7
 
       - name: Deploy to ECS
         run: |

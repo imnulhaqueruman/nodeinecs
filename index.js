@@ -31,6 +31,18 @@ const initDB = async () => {
   }
 };
 
+// Health check route
+app.get('/health', async (req, res) => {
+  try {
+    // Check database connection
+    await pool.query('SELECT 1');
+    res.status(200).json({ status: 'healthy' });
+  } catch (error) {
+    console.error('Health check failed:', error);
+    res.status(500).json({ status: 'unhealthy', error: error.message });
+  }
+});
+
 // Routes
 app.get('/users', async (req, res) => {
   try {
