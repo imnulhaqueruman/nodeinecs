@@ -1,0 +1,100 @@
+{
+    "taskDefinitionArn": "arn:aws:ecs:ap-northeast-3:390402535538:task-definition/update-task:1",
+    "containerDefinitions": [
+        {
+            "name": "nodejs",
+            "image": "poridhi/nodeecs:v1.6",
+            "cpu": 0,
+            "portMappings": [
+                {
+                    "name": "nodejs-8080-tcp",
+                    "containerPort": 8080,
+                    "hostPort": 8080,
+                    "protocol": "tcp",
+                    "appProtocol": "http"
+                }
+            ],
+            "essential": true,
+            "environment": [
+                {
+                    "name": "DB_NAME",
+                    "value": "poridhi"
+                },
+                {
+                    "name": "PORT",
+                    "value": "8080"
+                },
+                {
+                    "name": "DB_HOST",
+                    "value": "13.208.176.250"
+                },
+                {
+                    "name": "DB_USER",
+                    "value": "poridhi"
+                },
+                {
+                    "name": "DB_PASSWORD",
+                    "value": "poridhi"
+                }
+            ],
+            "environmentFiles": [],
+            "mountPoints": [],
+            "volumesFrom": [],
+            "ulimits": [],
+            "logConfiguration": {
+                "logDriver": "awslogs",
+                "options": {
+                    "awslogs-group": "/ecs/update-task",
+                    "mode": "non-blocking",
+                    "awslogs-create-group": "true",
+                    "max-buffer-size": "25m",
+                    "awslogs-region": "ap-northeast-3",
+                    "awslogs-stream-prefix": "ecs"
+                },
+                "secretOptions": []
+            },
+            "systemControls": []
+        }
+    ],
+    "family": "update-task",
+    "executionRoleArn": "arn:aws:iam::390402535538:role/ecsTaskExecutionRole",
+    "revision": 1,
+    "volumes": [],
+    "status": "ACTIVE",
+    "requiresAttributes": [
+        {
+            "name": "com.amazonaws.ecs.capability.logging-driver.awslogs"
+        },
+        {
+            "name": "ecs.capability.execution-role-awslogs"
+        },
+        {
+            "name": "com.amazonaws.ecs.capability.docker-remote-api.1.19"
+        },
+        {
+            "name": "com.amazonaws.ecs.capability.docker-remote-api.1.28"
+        },
+        {
+            "name": "com.amazonaws.ecs.capability.docker-remote-api.1.18"
+        },
+        {
+            "name": "com.amazonaws.ecs.capability.docker-remote-api.1.29"
+        }
+    ],
+    "placementConstraints": [],
+    "compatibilities": [
+        "EC2"
+    ],
+    "requiresCompatibilities": [
+        "EC2"
+    ],
+    "cpu": "512",
+    "memory": "256",
+    "runtimePlatform": {
+        "cpuArchitecture": "X86_64",
+        "operatingSystemFamily": "LINUX"
+    },
+    "registeredAt": "2024-10-24T05:26:58.908Z",
+    "registeredBy": "arn:aws:iam::390402535538:user/k919-poridhi",
+    "tags": []
+}
